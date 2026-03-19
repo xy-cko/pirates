@@ -41,13 +41,19 @@ class Modifier:
                     word = new_subj_text
                 
                 # Check if this token is a verb/auxiliary connected to the subject
+                #"AUX" = Auxiliary verb
+                #"VERB" = Main verb
+                #"VBP" = Verb, non-3rd person singular present
+                #"VBZ" = Verb, 3rd person singular present
+                #"VBD" = Verb, past tense
                 elif token.pos_ in ["AUX", "VERB"] and (token == subj_token.head or token.head == subj_token.head):
                     
                     # Conjugate for "Pirate King" (Singular)
                     if is_singular:
                         if token.tag_ == "VBP":
                             inflected = token._.inflect("VBZ") 
-                            if inflected: word = inflected
+                            if inflected: 
+                                word = inflected
                             
                     # Conjugate for "Pirates" (Plural)
                     else:
@@ -60,7 +66,8 @@ class Modifier:
                         # Handle other general verbs
                         elif token.tag_ == "VBZ":  
                             inflected = token._.inflect("VBP") 
-                            if inflected: word = inflected
+                            if inflected: 
+                                word = inflected
 
                 if token.is_title and token != subj_token:
                     word = word.capitalize()

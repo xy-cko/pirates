@@ -105,6 +105,22 @@ Runtime logs are written to `app.log` in the project root and also printed to st
 
 ---
 
+## Testing
+
+A simple testing suite is prepared in test_app.py. To run the tests, make sure you have pytest installed:
+
+```bash
+pip install pytest
+```
+
+And then run:
+
+```bash
+pytest test_app.py
+```
+
+---
+
 ## Assumptions
 
 - Missing request and empty request are not the same; when `magic_number` parameter is not provided, an `"Invalid request"` error is returned, however, when it is present but its value is empty, a `"Where is magic?"` response is provided.
