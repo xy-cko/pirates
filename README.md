@@ -85,7 +85,7 @@ curl -X POST http://127.0.0.1:5000/ \
 | Condition                              | Status | Message                   |
 |----------------------------------------|--------|---------------------------|
 | Missing or invalid JSON                | 400    | `"Invalid request"`       |
-| `magic_number` is absent or not an int | 400    | `"Where is magic?"`       |
+| `magic_number` is empty or not an int  | 400    | `"Where is magic?"`       |
 | Sentence has no detectable subject     | 400    | `"Where am I?"`           |
 
 ---
@@ -93,3 +93,9 @@ curl -X POST http://127.0.0.1:5000/ \
 ## Logs
 
 Runtime logs are written to `app.log` in the project root and also printed to stdout.
+
+---
+
+## Assumptions
+
+- Missing request and empty request are not the same; when `magic_number` parameter is not provided, an `"Invalid request"` error is returned, however, when it is present but its value is empty, a `"Where is magic?"` response is provided.
