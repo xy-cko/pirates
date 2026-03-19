@@ -1,0 +1,11 @@
+2026-03-19 22:13:29,766 - __main__ - INFO - Magic number missing
+2026-03-19 22:13:37,807 - __main__ - INFO - Pirates count: 4 from magic 6
+2026-03-19 22:13:37,860 - __main__ - INFO - Modified English: Pirate King walks funny
+2026-03-19 22:13:49,957 - __main__ - INFO - Pirates count: 4 from magic 6
+2026-03-19 22:13:49,981 - __main__ - INFO - Modified English: 4 Pirates walk funny
+2026-03-19 22:14:02,625 - __main__ - INFO - Pirates count: 4 from magic 6
+2026-03-19 22:14:02,645 - __main__ - INFO - Modified English: Pirate King is funny
+2026-03-19 22:14:20,171 - __main__ - INFO - Pirates count: 4 from magic 6
+2026-03-19 22:14:20,188 - __main__ - INFO - Modified English: 4 Pirates dance funny
+2026-03-19 22:15:51,672 - __main__ - ERROR - Missing sentence or magic number in request
+2026-03-19 22:16:10,640 - __main__ - ERROR - No JSON received
