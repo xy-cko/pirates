@@ -1,0 +1,58 @@
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    command: flask run --host=0.0.0.0
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=pirate_pass
+      - DB_NAME=pirates_db
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    environment:
+      MYSQL_ROOT_PASSWORD: pirate_pass
+      MYSQL_DATABASE: pirates_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppirate_pass"]
+      timeout: 20s
+      retries: 10
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 500M
+      POST_LIMIT: 500M
+    ports:
+      - "8083:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:80" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  app-network: { }
+volumes:
+  mysql_data:
